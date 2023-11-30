@@ -45,8 +45,6 @@ class NewsPage extends StatelessWidget {
   //   },
   // ];
 
-  Future<List<Article>> postdataFuture = fetchArticle();
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -110,7 +108,7 @@ class NewsPage extends StatelessWidget {
                     future: postdataFuture,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return CircularProgressIndicator(); // Hiển thị khi đang chờ dữ liệu
+                        return const CircularProgressIndicator(); // Hiển thị khi đang chờ dữ liệu
                       } else if (snapshot.hasError) {
                         return Text(
                             'Error: ${snapshot.error}'); // Xử lý lỗi nếu có

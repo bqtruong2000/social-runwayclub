@@ -20,12 +20,12 @@ class ReadingListController extends GetxController {
   void onInit() {
     super.onInit();
     // Khởi tạo giá trị false cho tất cả các phần tử trong checkState
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 200; i++) {
       checkState[i] = false;
     }
 
     // Khởi tạo giá trị Icons.bookmark_outline cho tất cả các phần tử trong icon
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 200; i++) {
       icon[i] = Icons.bookmark_outline;
     }
   }
