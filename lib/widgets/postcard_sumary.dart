@@ -9,21 +9,21 @@ class PostCard extends StatelessWidget {
     required this.id,
     required this.postImagePath,
     required this.postName,
-    required this.tag,
+    required this.tags,
     required this.posterName,
     required this.posterAvatarPath,
     required this.postDate,
-    required this.postContent,
+    required this.postDescription,
   });
 
   final int id; //index để phân biệt các card trong controller
   final String postImagePath;
   final String postName;
-  final String tag;
+  final List<String> tags;
   final String posterName;
   final String posterAvatarPath;
-  final DateTime postDate;
-  final String postContent;
+  final String postDate;
+  final String postDescription;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class PostCard extends StatelessWidget {
               child: Row(
                 children: [
                   CircleAvatar(
-                    backgroundImage: AssetImage(posterAvatarPath),
+                    backgroundImage: NetworkImage(posterAvatarPath),
                     radius: 20,
                   ),
                   const SizedBox(width: 10),
@@ -58,20 +58,46 @@ class PostCard extends StatelessWidget {
                                 .textTheme
                                 .titleMedium
                                 ?.copyWith(fontWeight: FontWeight.bold)),
-                        Text(DateFormat("MMM d''yy").format(postDate),
+                        Text(postDate,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyLarge
                                 ?.copyWith(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .onSurface
-                                    .withOpacity(0.5))),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onSurface
+                                        .withOpacity(0.5))),
                       ],
                     ),
                   ),
+                  // Obx(
+                  //   () => IconButton(
+                  //     onPressed: () {
+                  //       // Sử dụng index để xác định card cụ thể được nhấn
+                  //       c.updateCheckState(
+                  //           id,
+                  //           !c
+                  //               .checkState[c.checkState
+                  //                   .indexWhere((element) => element.id == id)]
+                  //               .state!);
+                  //       if (c
+                  //           .checkState[c.checkState
+                  //               .indexWhere((element) => element.id == id)]
+                  //           .state!) {
+                  //         c.updateIcon(id, Icons.bookmark);
+                  //       } else {
+                  //         c.updateIcon(id, Icons.bookmark_outline);
+                  //       }
+                  //     },
+                  //     icon: Icon(c
+                  //         .icon[
+                  //             c.icon.indexWhere((element) => element.id == id)]
+                  //         .icon), // Sử dụng icon theo index
+                  //     color: theme.colorScheme.primary,
+                  //   ),
+                  // ),
                   Obx(
-                        () => IconButton(
+                    () => IconButton(
                       onPressed: () {
                         // Sử dụng index để xác định card cụ thể được nhấn
                         c.updateCheckState(id, !c.checkState[id]!);
@@ -99,7 +125,7 @@ class PostCard extends StatelessWidget {
                           .textTheme
                           .titleSmall
                           ?.copyWith(fontWeight: FontWeight.bold)),
-                  Text('#$tag',
+                  Text(tags.map((tag) => '#$tag').join(', '),
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: Theme.of(context).colorScheme.primary)),
                   const SizedBox(height: 10),
