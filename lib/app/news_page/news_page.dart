@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:runway_club_social/app/blog_page/blog_page.dart';
+import 'package:runway_club_social/app/blog_page/controllers/blog_controller.dart';
 import 'package:runway_club_social/http/articles.dart';
 import '../../app/search_page/search_page.dart';
 import 'package:intl/intl.dart';
@@ -10,40 +11,6 @@ import '../reading_list_page/controller/reading_list_controller.dart';
 
 class NewsPage extends StatelessWidget {
   NewsPage({super.key});
-
-  // var postdata = [
-  //   {
-  //     'id': 0,
-  //     'postContent':
-  //     'HTML là một ngôn ngữ đánh dấu được thiết kế ra để tạo nên các trang web trên World Wide Web. HTML được tạo ra bởi Tim Berners-Lee vào năm 1990-1991. HTML là viết tắt của cụm từ tiếng Anh HyperText Markup Language, có nghĩa là "Ngôn ngữ đánh dấu siêu văn bản".',
-  //     'postDate': DateTime(2023, 9, 9),
-  //     'postImagePath': 'assets/images/postimage1.png',
-  //     'postName': 'HTML, CSS, JavaScript là gì?',
-  //     'posterAvatarPath': 'assets/images/avt1.jpg',
-  //     'posterName': 'thanhhuy5902',
-  //     'tag': 'web'
-  //   },
-  //   {
-  //     'id': 1,
-  //     'postContent': 'Hi',
-  //     'postDate': DateTime(2023, 10, 30),
-  //     'postImagePath': 'assets/images/postimage2.png',
-  //     'postName': 'Chào mừng đến với Runway club',
-  //     'posterAvatarPath': 'assets/images/avt2.jpg',
-  //     'posterName': 'truk',
-  //     'tag': 'welcome'
-  //   },
-  //   {
-  //     'id': 2,
-  //     'postContent': 'Hi',
-  //     'postDate': DateTime(2023, 10, 31),
-  //     'postImagePath': 'assets/images/postimage2.png',
-  //     'postName': 'Chào mừng đến với Runway club',
-  //     'posterAvatarPath': 'assets/images/avt2.jpg',
-  //     'posterName': 'truk',
-  //     'tag': 'welcome'
-  //   },
-  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -221,15 +188,26 @@ class PostCard extends StatelessWidget {
     var widthCard = screenWidth * 0.94;
     final theme = Theme.of(context);
     ReadingListController c = Get.put(ReadingListController());
+    BlogController blogController = Get.put(BlogController());
 
     return GestureDetector(
       onTap: () {
-        // Navigate to BlogApp() here
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => BlogPage()),
-        );
-      },
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => BlogPage(article: Article(
+            id: id,
+            postImagePath: postImagePath,
+            postName: postName,
+            tags: tags,
+            posterName: posterName,
+            posterAvatarPath: posterAvatarPath,
+            postDate: postDate,
+            postDescription: postDescription,
+          )),
+        ),
+      );
+    },
       child: SizedBox(
         width: widthCard,
         child: Card(
