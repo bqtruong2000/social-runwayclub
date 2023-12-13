@@ -5,9 +5,15 @@ import 'app/reading_list_page/reading_list_page.dart';
 import 'app/sign_in_page/sign_in_page.dart';
 import 'app/sign_up_page/sign_up_page.dart';
 import 'app/terms_of_use_page/terms_of_use_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+Future<void> main() async {
+
   runApp(const MyApp());
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 }
 
 class MyApp extends StatelessWidget {

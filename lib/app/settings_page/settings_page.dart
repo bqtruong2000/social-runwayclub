@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../github/sign_in.dart';
+
 void main() {
   runApp(const MaterialApp(
     home: SettingsPage(),
@@ -108,9 +110,13 @@ class SettingsPage extends StatelessWidget {
         leading:  Icon(Icons.extension_outlined),
         title:  Text('Extensions'),
       ),
-      const ListTile(
+       ListTile(
         leading:  Icon(Icons.logout),
         title:  Text('Sign out'),
+        onTap: () async{
+          await FirebaseAuthService().signOut();
+          Navigator.pushNamed(context, '/SignIn');
+        }
       ),
 
     ],

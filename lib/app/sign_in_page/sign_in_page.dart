@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:runway_club_social/github/onboarding_github.dart';
 
 import '../sign_in_page/controller/sign_in_controller.dart';
 import 'package:get/get.dart';
@@ -36,19 +37,20 @@ class SignInPage extends StatelessWidget {
                   icon: const Icon(Icons.facebook),
                   label: const Text("Login with Facebook")),
               const SizedBox(height: 5),
-              OutlinedButton.icon(
-                  onPressed: () {},
-                  style: OutlinedButton.styleFrom(
-                    fixedSize: Size(300, 40),
-                  ),
-                  icon: Image.asset(
-                    'assets/images/icon-github.png',
-                    width: 20,
-                    height: 20,
-                    color: theme.colorScheme.primary,
-                  ),
-                  label: const Text("Login with github")),
-              const SizedBox(height: 20),
+              const GithubAuthentication(),
+              // OutlinedButton.icon(
+              //     onPressed: () {},
+              //     style: OutlinedButton.styleFrom(
+              //       fixedSize: Size(300, 40),
+              //     ),
+              //     icon: Image.asset(
+              //       'assets/images/icon-github.png',
+              //       width: 20,
+              //       height: 20,
+              //       color: theme.colorScheme.primary,
+              //     ),
+              //     label: const Text("Login with github")),
+              // const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
