@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:runway_club_social/app/blog_page/blog_page.dart';
 import 'package:runway_club_social/app/blog_page/controllers/blog_controller.dart';
+import 'package:runway_club_social/app/news_page/controllers/news_controllers.dart';
 import 'package:runway_club_social/http/articles.dart';
 import '../../app/search_page/search_page.dart';
 import 'package:intl/intl.dart';
@@ -12,7 +13,6 @@ import '../reading_list_page/controller/reading_list_controller.dart';
 
 class NewsPage extends StatelessWidget {
   NewsPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -167,6 +167,7 @@ class NewsPage extends StatelessWidget {
 }
 
 class PostCard extends StatelessWidget {
+
   const PostCard({
     super.key,
     required this.id,
@@ -196,10 +197,11 @@ class PostCard extends StatelessWidget {
     var widthCard = screenWidth * 0.94;
     final theme = Theme.of(context);
     ReadingListController c = Get.put(ReadingListController());
-    BlogController blogController = Get.put(BlogController());
-
+    NewsController newsController = Get.put(NewsController());
     return GestureDetector(
       onTap: () {
+        newsController.onViewBlogClicked(id);
+
       Navigator.push(
         context,
         MaterialPageRoute(

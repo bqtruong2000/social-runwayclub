@@ -33,7 +33,8 @@ class BlogController extends GetxController {
         articleId: articleId,
         articleOwner: articleOwner,
         userName: profileController.user.value.githubUserName, // Set the actual user name
-        uid: profileController.user.value.uid, // Set the actual user ID
+        uid: profileController.user.value.uid,
+        userImage: profileController.user.value.profileImage// Set the actual user ID
       );
 
       try {

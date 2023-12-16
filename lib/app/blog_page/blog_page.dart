@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:runway_club_social/http/user.dart';
 import '../../app/blog_page/controllers/blog_controller.dart';
 import '../../http/articles.dart';
+import '../../http/comment.dart';
 import '../../http/user_article.dart';
 import '../profile_page/controller/profile_controller.dart';
 
@@ -13,6 +14,7 @@ class BlogPage extends StatelessWidget {
   BlogPage({Key? key, required this.article}) : super(key: key);
   @override
   Widget build(BuildContext context) => FutureBuilder<Blog>(
+
         future: fetchBlog(article.id),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {

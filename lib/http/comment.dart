@@ -16,6 +16,7 @@ Future<Comment> createComment(Comment comment) async{
       'articleOwner': comment.articleOwner,
       'userName': comment.userName,
       'uid': comment.uid,
+      'userImage': comment.userImage,
     }),
   );
   if (response.statusCode == 201) {
@@ -33,6 +34,7 @@ class Comment {
   final String articleOwner;
   final String userName;
   final int uid;
+  final String userImage;
 
   Comment(
       {required this.comment,
@@ -40,7 +42,9 @@ class Comment {
         required this.articleId,
         required this.articleOwner,
         required this.userName,
-        required this.uid});
+        required this.uid,
+        required this.userImage,
+      });
 
   factory Comment.fromJson(Map<String, dynamic> json) {
     return Comment(
@@ -50,6 +54,7 @@ class Comment {
       articleOwner: json['articleOwner'],
       userName: json['userName'],
       uid: json['uid'],
+      userImage: json['userImage'],
     );
   }
 
@@ -60,6 +65,7 @@ class Comment {
         'articleOwner': articleOwner,
         'userName': userName,
         'uid': uid,
+        'userImage': userImage,
       };
 
 }
