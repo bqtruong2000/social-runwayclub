@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:runway_club_social/app/profile_page/controller/profile_controller.dart';
+
+import '../../http/authenticated_user.dart';
 
 class ProfilePage extends StatefulWidget {
-   ProfilePage({Key? key}) : super(key: key);
+  final Future<User> user;
+   ProfilePage({Key? key, required this.user}) : super(key: key);
 
+   ProfileController profileController = ProfileController();
     var postdata = [
       {
         'postContent':
@@ -78,11 +83,21 @@ class _ProfilePageState extends State<ProfilePage> {
         centerTitle: true,
         automaticallyImplyLeading: false,
       ),
-      body: SingleChildScrollView(
-        child: Column(
+    body: FutureBuilder<User>(
+    future: widget.user,
+    builder: (context, snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+    return Center(child: CircularProgressIndicator());
+    } else if (snapshot.hasError) {
+    return Center(child: Text('Error: ${snapshot.error}'));
+    } else {
+    User user = snapshot.data!;
+
+    return SingleChildScrollView(
+    child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const AvatarProfile(),
+            AvatarProfile(user: user),
             const SizedBox(height: 10.0),
             const Divider(height: 1.0, thickness: 1.0),
             Container(
@@ -153,14 +168,18 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ],
         ),
-      ),
+      );
+    }
+    },
+    ),
     );
   }
 }
 
 
 class AvatarProfile extends StatelessWidget{
-  const AvatarProfile({Key? key}) : super(key: key);
+  final User user;
+  const AvatarProfile({Key? key, required this.user}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -170,9 +189,9 @@ class AvatarProfile extends StatelessWidget{
           children: [
             Container(
               margin: const EdgeInsets.all(20.0),
-              child:  const CircleAvatar(
+              child:  CircleAvatar(
                 radius: 40.0,
-                backgroundImage: AssetImage('assets/images/avt1.jpg'),
+                backgroundImage: NetworkImage(user.profileImage),
               ),
             ),
           ],
@@ -184,15 +203,15 @@ class AvatarProfile extends StatelessWidget{
               children: [
                 Container(
                   margin: const EdgeInsets.only(left: 20.0, right: 20.0),
-                  child: const Text(
-                    'Trường Bùi Quang',
+                  child:  Text(
+                    user.name,
                     style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Container(
                   margin: const EdgeInsets.only(left: 10.0, right: 20.0, bottom: 5.0),
-                  child: const Text(
-                    '@bqtruong2000',
+                  child: Text(
+                    user.githubUserName,
                     style: TextStyle(fontSize: 15.0),
                   ),
                 ),

@@ -23,6 +23,7 @@ class _GithubAuthenticationState extends State<GithubAuthentication> {
             {
               UserCredential userCredential = await signInWithGitHub();
               if(context.mounted){
+                print(userCredential);
                 Navigator.pushNamed(context, '/News');
               }
             }
@@ -39,6 +40,10 @@ class _GithubAuthenticationState extends State<GithubAuthentication> {
     GithubAuthProvider githubProvider = GithubAuthProvider();
 
     return await FirebaseAuth.instance.signInWithProvider(githubProvider);
+  }
+
+  Future<void> signOutWithGitHub() async {
+    await FirebaseAuth.instance.signOut();
   }
 
 

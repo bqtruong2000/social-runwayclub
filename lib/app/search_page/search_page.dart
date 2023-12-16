@@ -97,6 +97,7 @@ class MySearchDelegate extends SearchDelegate<String> {
                         posterAvatarPath: post.posterAvatarPath,
                         postDate: post.postDate,
                         postDescription: post.postDescription,
+                        uid: post.uid,
                       ),
                     ],
                   );

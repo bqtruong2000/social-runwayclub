@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:runway_club_social/app/blog_page/blog_page.dart';
 import 'package:runway_club_social/app/profile_page/profile_page.dart';
+import 'package:runway_club_social/http/authenticated_user.dart';
 import '../../app/news_page/news_page.dart';
 import '../../app/settings_page/settings_page.dart';
 import '../app/notification_page/notification_page.dart';
@@ -13,7 +14,7 @@ class NavigationBarApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Controller c = Get.put(Controller());
-
+    Future<User> user = fetchUser(69);
     return Obx(
           () => Scaffold(
         bottomNavigationBar: NavigationBar(
@@ -47,7 +48,7 @@ class NavigationBarApp extends StatelessWidget {
         ),
         body: <Widget>[
           NewsPage(),
-          ProfilePage(),
+          ProfilePage(user: user),
           NotificationPage(),
           const SettingsPage(),
         ][c.currentPageIndex.value],

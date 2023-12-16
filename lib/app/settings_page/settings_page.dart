@@ -114,7 +114,7 @@ class SettingsPage extends StatelessWidget {
         leading:  Icon(Icons.logout),
         title:  Text('Sign out'),
         onTap: () async{
-          await FirebaseAuthService().signOut();
+           await FirebaseAuthService().signOut();
           Navigator.pushNamed(context, '/SignIn');
         }
       ),

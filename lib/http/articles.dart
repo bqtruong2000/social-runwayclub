@@ -20,7 +20,7 @@ Future<List<Article>> fetchArticle() async {
 }
 
 class Article {
-  const Article({
+   const Article({
     required this.id,
     required this.postImagePath,
     required this.postName,
@@ -29,6 +29,7 @@ class Article {
     required this.posterAvatarPath,
     required this.postDate,
     required this.postDescription,
+    required this.uid,
   });
 
   final int id;
@@ -39,6 +40,7 @@ class Article {
   final String posterAvatarPath;
   final String postDate;
   final String postDescription;
+  final int uid;
 
   factory Article.fromJson(Map<String, dynamic> json) {
     if (json.containsKey('id') &&
@@ -49,6 +51,7 @@ class Article {
         json['user'] is Map<String, dynamic> &&
         json['user'].containsKey('name') &&
         json['user'].containsKey('profile_image') &&
+        json['user'].containsKey('user_id') &&
         json.containsKey('readable_publish_date') &&
         json.containsKey('description')) {
       return Article(
@@ -58,6 +61,7 @@ class Article {
         tags: (json['tag_list'] as List<dynamic>).cast<String>(),
         posterName: json['user']['name'] as String,
         posterAvatarPath: json['user']['profile_image'] as String,
+        uid: json['user']['user_id'] as int,
         postDate: json['readable_publish_date'] as String,
         postDescription: json['description'] as String,
       );

@@ -7,6 +7,7 @@ import 'package:runway_club_social/http/articles.dart';
 import '../../app/search_page/search_page.dart';
 import 'package:intl/intl.dart';
 
+import '../../http/all_articles.dart';
 import '../reading_list_page/controller/reading_list_controller.dart';
 
 class NewsPage extends StatelessWidget {
@@ -82,6 +83,9 @@ class NewsPage extends StatelessWidget {
                       } else {
                         List<Article> postdata =
                             snapshot.data!; // Lấy dữ liệu từ snapshot
+                        // for (Article article in postdata) {
+                        //   CreateArticle(article); // Call the function for each article
+                        // }
                         List<Widget> postWidgets = postdata.map((post) {
                           return Column(
                             children: [
@@ -95,6 +99,7 @@ class NewsPage extends StatelessWidget {
                                 posterAvatarPath: post.posterAvatarPath,
                                 postDate: post.postDate,
                                 postDescription: post.postDescription,
+                                uid: post.uid,
                               ),
                             ],
                           );
@@ -135,6 +140,7 @@ class NewsPage extends StatelessWidget {
                                 posterAvatarPath: post.posterAvatarPath,
                                 postDate: post.postDate,
                                 postDescription: post.postDescription,
+                                uid: post.uid,
                               ),
                             ],
                           );
@@ -171,6 +177,7 @@ class PostCard extends StatelessWidget {
     required this.posterAvatarPath,
     required this.postDate,
     required this.postDescription,
+    required this.uid,
   });
 
   final int id; //index để phân biệt các card trong controller
@@ -181,6 +188,7 @@ class PostCard extends StatelessWidget {
   final String posterAvatarPath;
   final String postDate;
   final String postDescription;
+  final int uid;
 
   @override
   Widget build(BuildContext context) {
@@ -204,6 +212,7 @@ class PostCard extends StatelessWidget {
             posterAvatarPath: posterAvatarPath,
             postDate: postDate,
             postDescription: postDescription,
+            uid: uid,
           )),
         ),
       );

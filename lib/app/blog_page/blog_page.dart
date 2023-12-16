@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:runway_club_social/http/user.dart';
 import '../../app/blog_page/controllers/blog_controller.dart';
 import '../../http/articles.dart';
 import '../../http/user_article.dart';
+import '../profile_page/controller/profile_controller.dart';
 
 
 class BlogPage extends StatelessWidget {
   final Article article;
 
   BlogPage({Key? key, required this.article}) : super(key: key);
-
   @override
   Widget build(BuildContext context) => FutureBuilder<Blog>(
         future: fetchBlog(article.id),
@@ -19,7 +20,10 @@ class BlogPage extends StatelessWidget {
           } else if (snapshot.hasError) {
             return Text('Error: ${snapshot.error}'); // Handle error if any
           } else {
-            Blog blog = snapshot.data!; // Retrieved blog data
+
+              Blog blog = snapshot.data!;
+              CreateUser(blog);
+            // Retrieved blog data
       return Scaffold(
         appBar: AppBar(
 
@@ -32,7 +36,7 @@ class BlogPage extends StatelessWidget {
 
                 children: [
                   CircleAvatar(
-                    backgroundImage: AssetImage(article.posterAvatarPath),
+                    backgroundImage: NetworkImage(article.posterAvatarPath),
                     radius: 20,
                   ),
 
@@ -72,7 +76,7 @@ class BlogPage extends StatelessWidget {
 class MyImageWidget extends StatelessWidget {
   final Blog blog;
   final BlogController c = Get.put(BlogController());
-
+  ProfileController _profileController = Get.put(ProfileController());
   MyImageWidget({required this.blog});
 
   @override
@@ -125,7 +129,7 @@ class MyImageWidget extends StatelessWidget {
               builder: (_) => Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: c.comments
-                    .map((comment) => CommentCard(comment: comment))
+                    .map((comment) => CommentCard(comment: comment, userAvatarUrl: blog.blogUserAvatar, userName: _profileController.user.value.githubUserName))
                     .toList(),
               ),
             ),
@@ -140,7 +144,7 @@ class MyImageWidget extends StatelessWidget {
                 labelText: 'Your comment',
                 suffixIcon: IconButton(
                   onPressed: () {
-                    c.addComment();
+                    c.addComment(blog.blogTitle, blog.blogUserName, blog.id);
                     FocusScope.of(context).unfocus(); // Dismiss the keyboard
                   },
                   icon: Icon(Icons.send),
@@ -158,24 +162,59 @@ class MyImageWidget extends StatelessWidget {
 }
 
 class CommentCard extends StatelessWidget {
-  final String comment;
+  ProfileController _profileController = Get.put(ProfileController());
 
-  const CommentCard({required this.comment});
+  final String userName;
+  final String comment;
+  final String userAvatarUrl; // Add user avatar URL
+
+   CommentCard({
+    required this.userName,
+    required this.comment,
+    required this.userAvatarUrl,
+  });
+
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 50.0,
       margin: EdgeInsets.symmetric(vertical: 8.0),
       padding: EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.blue),
         borderRadius: BorderRadius.circular(8.0),
       ),
-      child: Text(
-        comment,
-        style: TextStyle(fontSize: 16.0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CircleAvatar(
+            backgroundImage: NetworkImage(_profileController.user.value.profileImage),
+            radius: 20,
+          ),
+          SizedBox(width: 8.0),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    userName,
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(width: 8.0),
+                  Text(
+                    comment,
+                    style: TextStyle(fontSize: 16.0),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
