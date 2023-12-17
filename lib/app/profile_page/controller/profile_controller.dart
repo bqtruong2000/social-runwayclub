@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 import '../../../http/authenticated_user.dart';
 
-class ProfileController extends GetxController{
+class ProfileController extends GetxController {
   final String name = 'Trường Bùi Quang';
   final String username = '@bqtruong2000';
   final String country = 'Vietnam';

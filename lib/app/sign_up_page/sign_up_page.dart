@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatelessWidget {
-
   const SignUpPage({super.key});
 
   @override
@@ -72,7 +71,8 @@ class SignUpPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    const Text("By creating an account, you agree to Runway's "),
+                    const Text(
+                        "By creating an account, you agree to Runway's "),
                     InkWell(
                       onTap: () {
                         Navigator.pushNamed(context, '/TermsOfUse');

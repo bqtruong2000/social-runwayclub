@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:http/http.dart' as http;
 import 'package:runway_club_social/http/comment.dart';
 
@@ -27,11 +28,11 @@ Future<List<Comment>> GetCommentsById(int id) async {
         throw Exception('Unexpected response format');
       }
     } else {
-      throw Exception('API request failed with status code: ${response.statusCode}');
+      throw Exception(
+          'API request failed with status code: ${response.statusCode}');
     }
   } catch (error) {
     print('Error fetching comments: $error');
-    // Return an empty list in case of an error
     return [];
   }
 }

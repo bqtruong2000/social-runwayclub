@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
+
 import '../app/reading_list_page/controller/reading_list_controller.dart';
 
 class PostCard extends StatelessWidget {

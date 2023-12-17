@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:runway_club_social/app/blog_page/blog_page.dart';
 import 'package:runway_club_social/app/profile_page/profile_page.dart';
 import 'package:runway_club_social/http/authenticated_user.dart';
+
 import '../../app/news_page/news_page.dart';
 import '../../app/settings_page/settings_page.dart';
 import '../app/notification_page/notification_page.dart';
@@ -16,7 +16,7 @@ class NavigationBarApp extends StatelessWidget {
     Controller c = Get.put(Controller());
     Future<User> user = fetchUser(69);
     return Obx(
-          () => Scaffold(
+      () => Scaffold(
         bottomNavigationBar: NavigationBar(
           onDestinationSelected: (int index) {
             c.currentPageIndex.value = index;
@@ -30,7 +30,8 @@ class NavigationBarApp extends StatelessWidget {
               label: 'News',
             ),
             NavigationDestination(
-              selectedIcon: Icon(Icons.account_circle, color: Color(0xFF426ef0)),
+              selectedIcon:
+                  Icon(Icons.account_circle, color: Color(0xFF426ef0)),
               icon: Icon(Icons.account_circle_outlined),
               label: 'Profile',
             ),

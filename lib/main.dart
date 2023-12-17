@@ -1,11 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
 import '../../../widgets/navigation_bar.dart';
 import 'app/landing_page/landing_page.dart';
 import 'app/reading_list_page/reading_list_page.dart';
 import 'app/sign_in_page/sign_in_page.dart';
 import 'app/sign_up_page/sign_up_page.dart';
 import 'app/terms_of_use_page/terms_of_use_page.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -14,7 +15,6 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
-
 }
 
 class MyApp extends StatelessWidget {

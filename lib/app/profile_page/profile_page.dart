@@ -6,49 +6,14 @@ import '../../http/authenticated_user.dart';
 
 class ProfilePage extends StatefulWidget {
   final Future<User> user;
-   ProfilePage({Key? key, required this.user}) : super(key: key);
 
-   ProfileController profileController = ProfileController();
-    var postdata = [
-      {
-        'postContent':
-        'HTML là một ngôn ngữ đánh dấu được thiết kế ra để tạo nên các trang web trên World Wide Web. HTML được tạo ra bởi Tim Berners-Lee vào năm 1990-1991. HTML là viết tắt của cụm từ tiếng Anh HyperText Markup Language, có nghĩa là "Ngôn ngữ đánh dấu siêu văn bản".',
-        'postDate': DateTime(2023, 9, 9),
-        'postImagePath': 'assets/images/postimage1.png',
-        'postName': 'HTML, CSS, JavaScript là gì?',
-        'posterAvatarPath': 'assets/images/avt1.jpg',
-        'posterName': 'bqtruong2000',
-        'tag': 'web'
-      },
-      {
-        'postContent': 'Hi',
-        'postDate': DateTime(2023, 10, 30),
-        'postImagePath': 'assets/images/postimage2.png',
-        'postName': 'Chào mừng đến với Runway club',
-        'posterAvatarPath': 'assets/images/avt1.jpg',
-        'posterName': 'bqtruong2000',
-        'tag': 'welcome'
-      },
-      {
-        'postContent': 'Hi',
-        'postDate': DateTime(2023, 10, 31),
-        'postImagePath': 'assets/images/postimage2.png',
-        'postName': 'Chào mừng đến với Runway club',
-        'posterAvatarPath': 'assets/images/avt1.jpg',
-        'posterName': 'bqtruong2000',
-        'tag': 'welcome'
-      },
-    ];
+  ProfilePage({Key? key, required this.user}) : super(key: key);
 
-  @override
-  State<ProfilePage> createState() => _ProfilePageState();
-}
-
-class _ProfilePageState extends State<ProfilePage> {
+  ProfileController profileController = ProfileController();
   var postdata = [
     {
       'postContent':
-      'HTML là một ngôn ngữ đánh dấu được thiết kế ra để tạo nên các trang web trên World Wide Web. HTML được tạo ra bởi Tim Berners-Lee vào năm 1990-1991. HTML là viết tắt của cụm từ tiếng Anh HyperText Markup Language, có nghĩa là "Ngôn ngữ đánh dấu siêu văn bản".',
+          'HTML là một ngôn ngữ đánh dấu được thiết kế ra để tạo nên các trang web trên World Wide Web. HTML được tạo ra bởi Tim Berners-Lee vào năm 1990-1991. HTML là viết tắt của cụm từ tiếng Anh HyperText Markup Language, có nghĩa là "Ngôn ngữ đánh dấu siêu văn bản".',
       'postDate': DateTime(2023, 9, 9),
       'postImagePath': 'assets/images/postimage1.png',
       'postName': 'HTML, CSS, JavaScript là gì?',
@@ -75,6 +40,43 @@ class _ProfilePageState extends State<ProfilePage> {
       'tag': 'welcome'
     },
   ];
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  var postdata = [
+    {
+      'postContent':
+          'HTML là một ngôn ngữ đánh dấu được thiết kế ra để tạo nên các trang web trên World Wide Web. HTML được tạo ra bởi Tim Berners-Lee vào năm 1990-1991. HTML là viết tắt của cụm từ tiếng Anh HyperText Markup Language, có nghĩa là "Ngôn ngữ đánh dấu siêu văn bản".',
+      'postDate': DateTime(2023, 9, 9),
+      'postImagePath': 'assets/images/postimage1.png',
+      'postName': 'HTML, CSS, JavaScript là gì?',
+      'posterAvatarPath': 'assets/images/avt1.jpg',
+      'posterName': 'bqtruong2000',
+      'tag': 'web'
+    },
+    {
+      'postContent': 'Hi',
+      'postDate': DateTime(2023, 10, 30),
+      'postImagePath': 'assets/images/postimage2.png',
+      'postName': 'Chào mừng đến với Runway club',
+      'posterAvatarPath': 'assets/images/avt1.jpg',
+      'posterName': 'bqtruong2000',
+      'tag': 'welcome'
+    },
+    {
+      'postContent': 'Hi',
+      'postDate': DateTime(2023, 10, 31),
+      'postImagePath': 'assets/images/postimage2.png',
+      'postName': 'Chào mừng đến với Runway club',
+      'posterAvatarPath': 'assets/images/avt1.jpg',
+      'posterName': 'bqtruong2000',
+      'tag': 'welcome'
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,103 +85,113 @@ class _ProfilePageState extends State<ProfilePage> {
         centerTitle: true,
         automaticallyImplyLeading: false,
       ),
-    body: FutureBuilder<User>(
-    future: widget.user,
-    builder: (context, snapshot) {
-    if (snapshot.connectionState == ConnectionState.waiting) {
-    return Center(child: CircularProgressIndicator());
-    } else if (snapshot.hasError) {
-    return Center(child: Text('Error: ${snapshot.error}'));
-    } else {
-    User user = snapshot.data!;
+      body: FutureBuilder<User>(
+        future: widget.user,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else {
+            User user = snapshot.data!;
 
-    return SingleChildScrollView(
-    child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AvatarProfile(user: user),
-            const SizedBox(height: 10.0),
-            const Divider(height: 1.0, thickness: 1.0),
-            Container(
-              margin: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 5.0, top: 10.0),
-              child: const Text(
-                'Posts',
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-              ),
-            ),
-            const ListTile(
-              leading:  Icon(Icons.document_scanner_outlined),
-              title:  Text('2 posts published'),
-            ),
-            const ListTile(
-              leading:  Icon(Icons.comment_outlined),
-              title:  Text('0 comments written'),
-            ),
-            const ListTile(
-              leading:  Icon(Icons.tag_outlined),
-              title:  Text('9 tags followed'),
-            ),
-            const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [],
-            ),
-            const Divider(height: 1.0, thickness: 1.0),
-            const SizedBox(height: 20.0),
-            Container(
-              margin: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 10.0),
-              child: const Text(
-                'Information',
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-              ),
-            ),
-            const ListTile(
-              leading: Icon(Icons.location_on_outlined),
-              title: Text('Vietnam'),
-            ),
-            const ListTile(
-              leading: Icon(Icons.email_outlined),
-              title: Text('truong.bq@runwayclub.dev'),
-            ),
-            const ListTile(
-              leading: Image(image: AssetImage('assets/images/icon-github.png'), width: 20.0, height: 20.0),
-              title: Text('Runway ATC'),
-            ),
-            const Divider(height: 1.0, thickness: 1.0),
-            const SizedBox(height: 20.0),
-            Center(
+            return SingleChildScrollView(
               child: Column(
-                children: postdata.map((postdata) {
-                  return Column(
-                    children: [
-                      const SizedBox(height: 10),
-                      PostCard(
-                        postImagePath: postdata['postImagePath'].toString(),
-                        postName: postdata['postName'].toString(),
-                        tag: postdata['tag'].toString(),
-                        posterName: postdata['posterName'].toString(),
-                        posterAvatarPath: postdata['posterAvatarPath'].toString(),
-                        postDate: postdata['postDate'] as DateTime,
-                        postContent: postdata['postContent'].toString(),
-                      ),
-                    ],
-                  );
-                }).toList(),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  AvatarProfile(user: user),
+                  const SizedBox(height: 10.0),
+                  const Divider(height: 1.0, thickness: 1.0),
+                  Container(
+                    margin: const EdgeInsets.only(
+                        left: 20.0, right: 20.0, bottom: 5.0, top: 10.0),
+                    child: const Text(
+                      'Posts',
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const ListTile(
+                    leading: Icon(Icons.document_scanner_outlined),
+                    title: Text('2 posts published'),
+                  ),
+                  const ListTile(
+                    leading: Icon(Icons.comment_outlined),
+                    title: Text('0 comments written'),
+                  ),
+                  const ListTile(
+                    leading: Icon(Icons.tag_outlined),
+                    title: Text('9 tags followed'),
+                  ),
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [],
+                  ),
+                  const Divider(height: 1.0, thickness: 1.0),
+                  const SizedBox(height: 20.0),
+                  Container(
+                    margin: const EdgeInsets.only(
+                        left: 20.0, right: 20.0, bottom: 10.0),
+                    child: const Text(
+                      'Information',
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const ListTile(
+                    leading: Icon(Icons.location_on_outlined),
+                    title: Text('Vietnam'),
+                  ),
+                  const ListTile(
+                    leading: Icon(Icons.email_outlined),
+                    title: Text('truong.bq@runwayclub.dev'),
+                  ),
+                  const ListTile(
+                    leading: Image(
+                        image: AssetImage('assets/images/icon-github.png'),
+                        width: 20.0,
+                        height: 20.0),
+                    title: Text('Runway ATC'),
+                  ),
+                  const Divider(height: 1.0, thickness: 1.0),
+                  const SizedBox(height: 20.0),
+                  Center(
+                    child: Column(
+                      children: postdata.map((postdata) {
+                        return Column(
+                          children: [
+                            const SizedBox(height: 10),
+                            PostCard(
+                              postImagePath:
+                                  postdata['postImagePath'].toString(),
+                              postName: postdata['postName'].toString(),
+                              tag: postdata['tag'].toString(),
+                              posterName: postdata['posterName'].toString(),
+                              posterAvatarPath:
+                                  postdata['posterAvatarPath'].toString(),
+                              postDate: postdata['postDate'] as DateTime,
+                              postContent: postdata['postContent'].toString(),
+                            ),
+                          ],
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
-      );
-    }
-    },
-    ),
+            );
+          }
+        },
+      ),
     );
   }
 }
 
-
-class AvatarProfile extends StatelessWidget{
+class AvatarProfile extends StatelessWidget {
   final User user;
+
   const AvatarProfile({Key? key, required this.user}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -189,7 +201,7 @@ class AvatarProfile extends StatelessWidget{
           children: [
             Container(
               margin: const EdgeInsets.all(20.0),
-              child:  CircleAvatar(
+              child: CircleAvatar(
                 radius: 40.0,
                 backgroundImage: NetworkImage(user.profileImage),
               ),
@@ -203,13 +215,15 @@ class AvatarProfile extends StatelessWidget{
               children: [
                 Container(
                   margin: const EdgeInsets.only(left: 20.0, right: 20.0),
-                  child:  Text(
+                  child: Text(
                     user.name,
-                    style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(fontSize: 15.0, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(left: 10.0, right: 20.0, bottom: 5.0),
+                  margin: const EdgeInsets.only(
+                      left: 10.0, right: 20.0, bottom: 5.0),
                   child: Text(
                     user.githubUserName,
                     style: TextStyle(fontSize: 15.0),
@@ -220,7 +234,10 @@ class AvatarProfile extends StatelessWidget{
             Column(
               children: [
                 Container(
-                  margin: const EdgeInsets.only(left: 10.0, right: 20.0, bottom: 8.0), // Adjust the horizontal margin as needed
+                  margin: const EdgeInsets.only(
+                      left: 10.0,
+                      right: 20.0,
+                      bottom: 8.0), // Adjust the horizontal margin as needed
                   child: ElevatedButton(
                     onPressed: () {},
                     child: const Text('Edit Profile'),
@@ -300,10 +317,10 @@ class PostCard extends StatelessWidget {
                               .textTheme
                               .bodyLarge
                               ?.copyWith(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSurface
-                                  .withOpacity(0.5))),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurface
+                                      .withOpacity(0.5))),
                     ],
                   ),
                 ],

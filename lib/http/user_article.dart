@@ -17,8 +17,6 @@ Future<Blog> fetchBlog(int id) async {
   return blog;
 }
 
-
-
 class Blog {
   const Blog({
     required this.id,
@@ -37,6 +35,7 @@ class Blog {
   final int id;
   final String blogImage;
   final String blogTitle;
+
   // final List<String> blogTags;
   final String blogUserName;
   final String blogUserAvatar;
@@ -59,7 +58,7 @@ class Blog {
         json.containsKey('description') &&
         json.containsKey('body_markdown') &&
         json.containsKey('comments_count') &&
-        json.containsKey('public_reactions_count') ) {
+        json.containsKey('public_reactions_count')) {
       return Blog(
         id: json['id'] as int,
         blogImage: json['social_image'] as String,

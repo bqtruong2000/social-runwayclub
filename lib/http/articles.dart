@@ -20,7 +20,7 @@ Future<List<Article>> fetchArticle() async {
 }
 
 class Article {
-   const Article({
+  const Article({
     required this.id,
     required this.postImagePath,
     required this.postName,

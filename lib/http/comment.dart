@@ -1,11 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:http/http.dart' as http;
 
-Future<Comment> createComment(Comment comment) async{
+Future<Comment> createComment(Comment comment) async {
   final String _url = Platform.isAndroid
-      ? 'http://10.0.2.2:1234/api/v1/comment' : 'http://127.0.0.1:1234/api/v1/comment';
+      ? 'http://10.0.2.2:1234/api/v1/comment'
+      : 'http://127.0.0.1:1234/api/v1/comment';
 
   final response = await http.post(
     Uri.parse(_url),
@@ -26,7 +28,6 @@ Future<Comment> createComment(Comment comment) async{
   }
 }
 
-
 class Comment {
   final String comment;
   final String articleTitle;
@@ -36,15 +37,15 @@ class Comment {
   final int uid;
   final String userImage;
 
-  Comment(
-      {required this.comment,
-      required this.articleTitle,
-        required this.articleId,
-        required this.articleOwner,
-        required this.userName,
-        required this.uid,
-        required this.userImage,
-      });
+  Comment({
+    required this.comment,
+    required this.articleTitle,
+    required this.articleId,
+    required this.articleOwner,
+    required this.userName,
+    required this.uid,
+    required this.userImage,
+  });
 
   factory Comment.fromJson(Map<String, dynamic> json) {
     return Comment(
@@ -67,5 +68,4 @@ class Comment {
         'uid': uid,
         'userImage': userImage,
       };
-
 }

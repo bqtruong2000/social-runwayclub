@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:http/http.dart' as http;
 
 Future<User> fetchUser(int id) async {
@@ -17,9 +18,7 @@ Future<User> fetchUser(int id) async {
   return user;
 }
 
-
-class User{
-
+class User {
   const User({
     required this.uid,
     required this.userName,
@@ -43,28 +42,28 @@ class User{
   final String profileImage;
 
   factory User.fromJson(Map<String, dynamic> json) {
-    if(json.containsKey('id') &&
-      json.containsKey('username') &&
-      json.containsKey('name') &&
-      json.containsKey('github_username') &&
-      json.containsKey('summary') &&
-      json.containsKey('location') &&
-      json.containsKey('website_url') &&
-      json.containsKey('joined_at') &&
-      json.containsKey('profile_image')){
-        return User(
-          uid: json['id'] as int,
-          userName: json['username'] as String,
-          name: json['name'] as String,
-          githubUserName: json['github_username'] as String,
-          summary: json['summary'] as String,
-          location: json['location'] as String,
-          websiteUrl: json['website_url'] as String,
-          joinedAt: json['joined_at'] as String,
-          profileImage: json['profile_image'] as String,
-        );
-      } else{
-        throw FormatException('Failed to load.');
+    if (json.containsKey('id') &&
+        json.containsKey('username') &&
+        json.containsKey('name') &&
+        json.containsKey('github_username') &&
+        json.containsKey('summary') &&
+        json.containsKey('location') &&
+        json.containsKey('website_url') &&
+        json.containsKey('joined_at') &&
+        json.containsKey('profile_image')) {
+      return User(
+        uid: json['id'] as int,
+        userName: json['username'] as String,
+        name: json['name'] as String,
+        githubUserName: json['github_username'] as String,
+        summary: json['summary'] as String,
+        location: json['location'] as String,
+        websiteUrl: json['website_url'] as String,
+        joinedAt: json['joined_at'] as String,
+        profileImage: json['profile_image'] as String,
+      );
+    } else {
+      throw FormatException('Failed to load.');
     }
   }
 }

@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:runway_club_social/app/profile_page/controller/profile_controller.dart';
+
 import '../../../http/articles.dart';
 import '../../../http/comment.dart';
-
 
 class BlogController extends GetxController {
   var commentText = ''.obs;
@@ -25,17 +25,20 @@ class BlogController extends GetxController {
     commentText.value = text;
   }
 
-  void addComment(String articleTitle, String articleOwner, int articleId) async {
+  void addComment(
+      String articleTitle, String articleOwner, int articleId) async {
     if (commentText.isNotEmpty) {
       Comment newComment = Comment(
-        comment: commentText.value,
-        articleTitle: articleTitle,
-        articleId: articleId,
-        articleOwner: articleOwner,
-        userName: profileController.user.value.githubUserName, // Set the actual user name
-        uid: profileController.user.value.uid,
-        userImage: profileController.user.value.profileImage// Set the actual user ID
-      );
+          comment: commentText.value,
+          articleTitle: articleTitle,
+          articleId: articleId,
+          articleOwner: articleOwner,
+          userName: profileController.user.value.githubUserName,
+          // Set the actual user name
+          uid: profileController.user.value.uid,
+          userImage: profileController
+              .user.value.profileImage // Set the actual user ID
+          );
 
       try {
         Comment createdComment = await createComment(newComment);

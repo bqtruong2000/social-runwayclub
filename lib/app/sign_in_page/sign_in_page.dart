@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:runway_club_social/github/onboarding_github.dart';
 
 import '../sign_in_page/controller/sign_in_controller.dart';
-import 'package:get/get.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({super.key});
@@ -116,7 +116,7 @@ class SignInPage extends StatelessWidget {
                   SizedBox(
                     width: 207,
                     child: Obx(
-                          () => CheckboxListTile(
+                      () => CheckboxListTile(
                         title: const Text("Remember me"),
                         value: c.isChecked.value,
                         onChanged: (newValue) {
@@ -174,5 +174,3 @@ class SignInPage extends StatelessWidget {
     );
   }
 }
-
-

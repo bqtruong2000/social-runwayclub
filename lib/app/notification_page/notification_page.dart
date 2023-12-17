@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 class NotificationPage extends StatelessWidget {
   NotificationPage({super.key});
 
-
   var postdata = [
     {
-      'postContent':
-      '"hayyyyyyyyyyyy quá"',
+      'postContent': '"hayyyyyyyyyyyy quá"',
       'postDate': DateTime(2023, 9, 9),
       'postImagePath': 'assets/images/postimage1.png',
       'postName': 'He just left a comment on HTML, CSS, JavaScript là gì?',
@@ -20,57 +19,59 @@ class NotificationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return DefaultTabController(
-        length: 3,
-        initialIndex: 0,
+      length: 3,
+      initialIndex: 0,
       child: Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: const Text('Notification'),
-        centerTitle: true,
-        actions: <Widget>[
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.search),
-            color: Colors.black,
-          ),
-        ],
-        bottom: TabBar(
-          labelStyle: theme.textTheme.bodyLarge?.copyWith(
-              fontWeight: FontWeight.bold),
-          labelColor: Colors.black,
-          unselectedLabelStyle: theme.textTheme.bodyLarge?.copyWith(
-              fontWeight: FontWeight.bold),
-          unselectedLabelColor: Colors.black.withOpacity(0.5),
-          tabs: const [
-            Tab(text: 'All',),
-            Tab(text: 'Comments'),
-            Tab(text: 'Post'),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: const Text('Notification'),
+          centerTitle: true,
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.search),
+              color: Colors.black,
+            ),
           ],
+          bottom: TabBar(
+            labelStyle: theme.textTheme.bodyLarge
+                ?.copyWith(fontWeight: FontWeight.bold),
+            labelColor: Colors.black,
+            unselectedLabelStyle: theme.textTheme.bodyLarge
+                ?.copyWith(fontWeight: FontWeight.bold),
+            unselectedLabelColor: Colors.black.withOpacity(0.5),
+            tabs: const [
+              Tab(
+                text: 'All',
+              ),
+              Tab(text: 'Comments'),
+              Tab(text: 'Post'),
+            ],
+          ),
         ),
-      ),
-
-      body: TabBarView(
+        body: TabBarView(
           children: [
             SingleChildScrollView(
-            child: Center(
-              child: Column(
+              child: Center(
+                child: Column(
                   children: postdata.map((postdata) {
                     return Column(
                       children: [
                         const SizedBox(height: 10),
-                          PostCard(
+                        PostCard(
                           postName: postdata['postName'].toString(),
                           posterName: postdata['posterName'].toString(),
-                          posterAvatarPath: postdata['posterAvatarPath'].toString(),
+                          posterAvatarPath:
+                              postdata['posterAvatarPath'].toString(),
                           postDate: postdata['postDate'] as DateTime,
                           postContent: postdata['postContent'].toString(),
-                          ),
-                        ],
-                        );
-                      }).toList(),
-                  ),
+                        ),
+                      ],
+                    );
+                  }).toList(),
+                ),
+              ),
             ),
-          ),
             Container(
               child: Center(
                 child: Text('Comments'),
@@ -80,12 +81,13 @@ class NotificationPage extends StatelessWidget {
               child: Center(
                 child: Text('Posts'),
               ),
-            ),],),
-    ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
-
 
 class PostCard extends StatelessWidget {
   const PostCard({
@@ -147,10 +149,10 @@ class PostCard extends StatelessWidget {
                               .textTheme
                               .bodyLarge
                               ?.copyWith(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSurface
-                                  .withOpacity(0.5))),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurface
+                                      .withOpacity(0.5))),
                     ],
                   ),
                 ],

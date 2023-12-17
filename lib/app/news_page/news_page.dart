@@ -2,17 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:runway_club_social/app/blog_page/blog_page.dart';
-import 'package:runway_club_social/app/blog_page/controllers/blog_controller.dart';
 import 'package:runway_club_social/app/news_page/controllers/news_controllers.dart';
 import 'package:runway_club_social/http/articles.dart';
-import '../../app/search_page/search_page.dart';
-import 'package:intl/intl.dart';
 
-import '../../http/all_articles.dart';
+import '../../app/search_page/search_page.dart';
 import '../reading_list_page/controller/reading_list_controller.dart';
 
 class NewsPage extends StatelessWidget {
   NewsPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -76,16 +74,11 @@ class NewsPage extends StatelessWidget {
                     future: postdataFuture,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const CircularProgressIndicator(); // Hiển thị khi đang chờ dữ liệu
+                        return const CircularProgressIndicator();
                       } else if (snapshot.hasError) {
-                        return Text(
-                            'Error: ${snapshot.error}'); // Xử lý lỗi nếu có
+                        return Text('Error: ${snapshot.error}');
                       } else {
-                        List<Article> postdata =
-                            snapshot.data!; // Lấy dữ liệu từ snapshot
-                        // for (Article article in postdata) {
-                        //   CreateArticle(article); // Call the function for each article
-                        // }
+                        List<Article> postdata = snapshot.data!;
                         List<Widget> postWidgets = postdata.map((post) {
                           return Column(
                             children: [
@@ -167,7 +160,6 @@ class NewsPage extends StatelessWidget {
 }
 
 class PostCard extends StatelessWidget {
-
   const PostCard({
     super.key,
     required this.id,
@@ -181,7 +173,7 @@ class PostCard extends StatelessWidget {
     required this.uid,
   });
 
-  final int id; //index để phân biệt các card trong controller
+  final int id;
   final String postImagePath;
   final String postName;
   final List<String> tags;
@@ -202,23 +194,24 @@ class PostCard extends StatelessWidget {
       onTap: () {
         newsController.onViewBlogClicked(id);
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => BlogPage(article: Article(
-            id: id,
-            postImagePath: postImagePath,
-            postName: postName,
-            tags: tags,
-            posterName: posterName,
-            posterAvatarPath: posterAvatarPath,
-            postDate: postDate,
-            postDescription: postDescription,
-            uid: uid,
-          )),
-        ),
-      );
-    },
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => BlogPage(
+                article: Article(
+              id: id,
+              postImagePath: postImagePath,
+              postName: postName,
+              tags: tags,
+              posterName: posterName,
+              posterAvatarPath: posterAvatarPath,
+              postDate: postDate,
+              postDescription: postDescription,
+              uid: uid,
+            )),
+          ),
+        );
+      },
       child: SizedBox(
         width: widthCard,
         child: Card(
@@ -274,7 +267,6 @@ class PostCard extends StatelessWidget {
                     Obx(
                       () => IconButton(
                         onPressed: () {
-                          // Sử dụng index để xác định card cụ thể được nhấn
                           c.updateCheckState(id, !c.checkState[id]!);
                           if (c.checkState[id]!) {
                             c.updateIcon(id, Icons.bookmark);
@@ -282,7 +274,7 @@ class PostCard extends StatelessWidget {
                             c.updateIcon(id, Icons.bookmark_outline);
                           }
                         },
-                        icon: Icon(c.icon[id]), // Sử dụng icon theo index
+                        icon: Icon(c.icon[id]),
                         color: theme.colorScheme.primary,
                       ),
                     ),

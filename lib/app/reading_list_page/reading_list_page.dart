@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:runway_club_social/http/articles.dart';
-import '../reading_list_page/controller/reading_list_controller.dart';
+
 import '../../widgets/postcard_sumary.dart';
+import '../reading_list_page/controller/reading_list_controller.dart';
 
 // ignore: must_be_immutable
 class ReadingListPage extends StatelessWidget {
