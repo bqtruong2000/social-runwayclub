@@ -34,20 +34,17 @@ class BlogController extends GetxController {
           articleId: articleId,
           articleOwner: articleOwner,
           userName: profileController.user.value.githubUserName,
-          // Set the actual user name
           uid: profileController.user.value.uid,
           userImage: profileController
-              .user.value.profileImage // Set the actual user ID
+              .user.value.profileImage 
           );
-
       try {
         Comment createdComment = await createComment(newComment);
         comments.add(createdComment.comment);
         commentText.value = '';
-        update(); // Trigger UI update
+        update(); 
       } catch (e) {
         print('Error creating comment: $e');
-        // Handle error
       }
     }
   }

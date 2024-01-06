@@ -10,36 +10,6 @@ class ProfilePage extends StatefulWidget {
   ProfilePage({Key? key, required this.user}) : super(key: key);
 
   ProfileController profileController = ProfileController();
-  var postdata = [
-    {
-      'postContent':
-          'HTML là một ngôn ngữ đánh dấu được thiết kế ra để tạo nên các trang web trên World Wide Web. HTML được tạo ra bởi Tim Berners-Lee vào năm 1990-1991. HTML là viết tắt của cụm từ tiếng Anh HyperText Markup Language, có nghĩa là "Ngôn ngữ đánh dấu siêu văn bản".',
-      'postDate': DateTime(2023, 9, 9),
-      'postImagePath': 'assets/images/postimage1.png',
-      'postName': 'HTML, CSS, JavaScript là gì?',
-      'posterAvatarPath': 'assets/images/avt1.jpg',
-      'posterName': 'bqtruong2000',
-      'tag': 'web'
-    },
-    {
-      'postContent': 'Hi',
-      'postDate': DateTime(2023, 10, 30),
-      'postImagePath': 'assets/images/postimage2.png',
-      'postName': 'Chào mừng đến với Runway club',
-      'posterAvatarPath': 'assets/images/avt1.jpg',
-      'posterName': 'bqtruong2000',
-      'tag': 'welcome'
-    },
-    {
-      'postContent': 'Hi',
-      'postDate': DateTime(2023, 10, 31),
-      'postImagePath': 'assets/images/postimage2.png',
-      'postName': 'Chào mừng đến với Runway club',
-      'posterAvatarPath': 'assets/images/avt1.jpg',
-      'posterName': 'bqtruong2000',
-      'tag': 'welcome'
-    },
-  ];
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -237,7 +207,7 @@ class AvatarProfile extends StatelessWidget {
                   margin: const EdgeInsets.only(
                       left: 10.0,
                       right: 20.0,
-                      bottom: 8.0), // Adjust the horizontal margin as needed
+                      bottom: 8.0),
                   child: ElevatedButton(
                     onPressed: () {},
                     child: const Text('Edit Profile'),

@@ -17,9 +17,9 @@ class BlogPage extends StatelessWidget {
       future: fetchBlog(article.id),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator(); // Display loading indicator while fetching data
+          return CircularProgressIndicator(); 
         } else if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}'); // Handle error if any
+          return Text('Error: ${snapshot.error}'); 
         } else {
           Blog blog = snapshot.data!;
           CreateUser(blog);
@@ -84,7 +84,7 @@ class MyImageWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: 250.0, // Set your desired height here
+                height: 250.0,
                 width: MediaQuery.of(context).size.width,
                 child: Image.network(blog.blogImage),
               ),
@@ -114,7 +114,6 @@ class MyImageWidget extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 16.0),
                 alignment: Alignment.center,
                 child: Text(
-                  // article.postDescription
                   blog.blogContent, style: TextStyle(fontSize: 16.0),
                 ),
               ),
@@ -146,7 +145,7 @@ class MyImageWidget extends StatelessWidget {
                         c.addComment(
                             blog.blogTitle, blog.blogUserName, blog.id);
                         FocusScope.of(context)
-                            .unfocus(); // Dismiss the keyboard
+                            .unfocus(); 
                       },
                       icon: Icon(Icons.send),
                       color: Color(0xFF426ef0),
@@ -167,8 +166,8 @@ class CommentCard extends StatelessWidget {
 
   final String userName;
   final String comment;
-  final String userAvatarUrl; // Add user avatar URL
-
+  final String userAvatarUrl; 
+  
   CommentCard({
     required this.userName,
     required this.comment,

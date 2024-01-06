@@ -39,12 +39,12 @@ class ReadingListPage extends StatelessWidget {
                 future: postdataFuture,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const CircularProgressIndicator(); // Hiển thị khi đang chờ dữ liệu
+                    return const CircularProgressIndicator(); 
                   } else if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}'); // Xử lý lỗi nếu có
+                    return Text('Error: ${snapshot.error}'); 
                   } else {
                     List<Article> postdata =
-                        snapshot.data!; // Lấy dữ liệu từ snapshot
+                        snapshot.data!; 
                     List<Widget> postWidgets = postdata
                         .where((element) => c.checkState[element.id] == true)
                         .map((post) {
@@ -66,7 +66,7 @@ class ReadingListPage extends StatelessWidget {
                     }).toList();
 
                     return Column(
-                      children: postWidgets, // Hiển thị danh sách các widgets
+                      children: postWidgets, 
                     );
                   }
                 },
@@ -79,12 +79,12 @@ class ReadingListPage extends StatelessWidget {
                 future: postdataFuture,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const CircularProgressIndicator(); // Hiển thị khi đang chờ dữ liệu
+                    return const CircularProgressIndicator(); 
                   } else if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}'); // Xử lý lỗi nếu có
+                    return Text('Error: ${snapshot.error}'); 
                   } else {
                     List<Article> postdata =
-                        snapshot.data!; // Lấy dữ liệu từ snapshot
+                        snapshot.data!; 
                     List<Widget> postWidgets = postdata
                         .where((element) => c.checkState[element.id] == true)
                         .map((post) {
@@ -106,7 +106,7 @@ class ReadingListPage extends StatelessWidget {
                     }).toList();
 
                     return Column(
-                      children: postWidgets, // Hiển thị danh sách các widgets
+                      children: postWidgets,
                     );
                   }
                 },
@@ -119,12 +119,12 @@ class ReadingListPage extends StatelessWidget {
                 future: postdataFuture,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const CircularProgressIndicator(); // Hiển thị khi đang chờ dữ liệu
+                    return const CircularProgressIndicator(); 
                   } else if (snapshot.hasError) {
-                    return Text('Error: ${snapshot.error}'); // Xử lý lỗi nếu có
+                    return Text('Error: ${snapshot.error}'); 
                   } else {
                     List<Article> postdata =
-                        snapshot.data!; // Lấy dữ liệu từ snapshot
+                        snapshot.data!; 
                     List<Widget> postWidgets = postdata
                         .where((element) => c.checkState[element.id] == true)
                         .map((post) {
@@ -146,7 +146,7 @@ class ReadingListPage extends StatelessWidget {
                     }).toList();
 
                     return Column(
-                      children: postWidgets, // Hiển thị danh sách các widgets
+                      children: postWidgets, 
                     );
                   }
                 },

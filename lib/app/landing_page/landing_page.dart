@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});
 
@@ -14,7 +13,7 @@ class _LandingPageState extends State<LandingPage> {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushNamed(context, '/SignIn');
-    }); // Chuyển trang sau 2s
+    });
   }
 
   @override
@@ -30,7 +29,6 @@ class _LandingPageState extends State<LandingPage> {
           children: [
             Image.asset('assets/images/runway-512-logo.png',
                 width: 200, height: 200.0),
-            // Logo
             const SizedBox(height: 20),
             const SizedBox(
               width: 36,
@@ -38,7 +36,6 @@ class _LandingPageState extends State<LandingPage> {
               child: CircularProgressIndicator(),
             ),
             const SizedBox(height: 80),
-            // Vòng đợi
           ],
         ),
       ),

@@ -100,7 +100,7 @@ class NewsPage extends StatelessWidget {
 
                         return Column(
                           children:
-                              postWidgets, // Hiển thị danh sách các widgets
+                              postWidgets, 
                         );
                       }
                     },
@@ -113,13 +113,13 @@ class NewsPage extends StatelessWidget {
                     future: postdataFuture,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return CircularProgressIndicator(); // Hiển thị khi đang chờ dữ liệu
+                        return CircularProgressIndicator(); 
                       } else if (snapshot.hasError) {
                         return Text(
-                            'Error: ${snapshot.error}'); // Xử lý lỗi nếu có
+                            'Error: ${snapshot.error}'); 
                       } else {
                         List<Article> postdata =
-                            snapshot.data!; // Lấy dữ liệu từ snapshot
+                            snapshot.data!; 
                         List<Widget> postWidgets = postdata.map((post) {
                           return Column(
                             children: [
@@ -141,7 +141,7 @@ class NewsPage extends StatelessWidget {
 
                         return Column(
                           children:
-                              postWidgets, // Hiển thị danh sách các widgets
+                              postWidgets, 
                         );
                       }
                     },

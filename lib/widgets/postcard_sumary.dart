@@ -16,7 +16,7 @@ class PostCard extends StatelessWidget {
     required this.postDescription,
   });
 
-  final int id; //index để phân biệt các card trong controller
+  final int id; 
   final String postImagePath;
   final String postName;
   final List<String> tags;
@@ -70,36 +70,9 @@ class PostCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  // Obx(
-                  //   () => IconButton(
-                  //     onPressed: () {
-                  //       // Sử dụng index để xác định card cụ thể được nhấn
-                  //       c.updateCheckState(
-                  //           id,
-                  //           !c
-                  //               .checkState[c.checkState
-                  //                   .indexWhere((element) => element.id == id)]
-                  //               .state!);
-                  //       if (c
-                  //           .checkState[c.checkState
-                  //               .indexWhere((element) => element.id == id)]
-                  //           .state!) {
-                  //         c.updateIcon(id, Icons.bookmark);
-                  //       } else {
-                  //         c.updateIcon(id, Icons.bookmark_outline);
-                  //       }
-                  //     },
-                  //     icon: Icon(c
-                  //         .icon[
-                  //             c.icon.indexWhere((element) => element.id == id)]
-                  //         .icon), // Sử dụng icon theo index
-                  //     color: theme.colorScheme.primary,
-                  //   ),
-                  // ),
                   Obx(
                     () => IconButton(
                       onPressed: () {
-                        // Sử dụng index để xác định card cụ thể được nhấn
                         c.updateCheckState(id, !c.checkState[id]!);
                         if (c.checkState[id]!) {
                           c.updateIcon(id, Icons.bookmark);
@@ -107,7 +80,7 @@ class PostCard extends StatelessWidget {
                           c.updateIcon(id, Icons.bookmark_outline);
                         }
                       },
-                      icon: Icon(c.icon[id]), // Sử dụng icon theo index
+                      icon: Icon(c.icon[id]), 
                       color: theme.colorScheme.primary,
                     ),
                   ),
