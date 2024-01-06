@@ -3,6 +3,7 @@ import 'package:runway_club_social/app/profile_page/controller/profile_controlle
 
 import '../../../http/articles.dart';
 import '../../../http/comment.dart';
+import '../../../http/notification.dart';
 
 class BlogController extends GetxController {
   var commentText = ''.obs;
@@ -42,6 +43,17 @@ class BlogController extends GetxController {
         Comment createdComment = await createComment(newComment);
         comments.add(createdComment.comment);
         commentText.value = '';
+        NotificationUser newNotification = NotificationUser(
+          articleTitle: articleTitle,
+          articleId: articleId,
+          articleOwner: articleOwner,
+          userName: profileController.user.value.githubUserName,
+          uid: profileController.user.value.uid,
+          userImage: profileController
+              .user.value.profileImage,
+          notification: newComment.comment,
+          );
+        await createNotification(newNotification);
         update(); 
       } catch (e) {
         print('Error creating comment: $e');
@@ -49,3 +61,5 @@ class BlogController extends GetxController {
     }
   }
 }
+
+

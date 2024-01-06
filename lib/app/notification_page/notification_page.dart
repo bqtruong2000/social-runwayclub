@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:runway_club_social/http/user_notification.dart';
+import 'package:runway_club_social/http/notification.dart';
 
 class NotificationPage extends StatelessWidget {
   NotificationPage({super.key});
@@ -53,22 +55,36 @@ class NotificationPage extends StatelessWidget {
           children: [
             SingleChildScrollView(
               child: Center(
-                child: Column(
-                  children: postdata.map((postdata) {
-                    return Column(
-                      children: [
-                        const SizedBox(height: 10),
-                        PostCard(
-                          postName: postdata['postName'].toString(),
-                          posterName: postdata['posterName'].toString(),
-                          posterAvatarPath:
-                              postdata['posterAvatarPath'].toString(),
-                          postDate: postdata['postDate'] as DateTime,
-                          postContent: postdata['postContent'].toString(),
-                        ),
-                      ],
-                    );
-                  }).toList(),
+                child: FutureBuilder<List<NotificationUser>>(
+                  future: getNotifications(69),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const CircularProgressIndicator();
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else {
+                      List<NotificationUser> notifications = snapshot.data!;
+                      List<Widget> postWidgets = notifications.map((notification) {
+                        return Column(
+                          children: [
+                            const SizedBox(height: 10),
+                            PostCard(
+                              postName: notification.articleTitle,
+                              posterName: notification.userName,
+                              posterAvatarPath: notification.userImage,
+                              // postDate: notification.postDate,
+                              postContent: notification.notification,
+                            ),
+                          ],
+                        );
+                      }).toList();
+                      return Column(
+                        children:
+                        postWidgets,
+                      );
+                    }
+                  },
+
                 ),
               ),
             ),
@@ -97,14 +113,14 @@ class PostCard extends StatelessWidget {
     //required this.tag,
     required this.posterName,
     required this.posterAvatarPath,
-    required this.postDate,
+    // required this.postDate,
     required this.postContent,
   });
 
   final String postName;
   final String posterName;
   final String posterAvatarPath;
-  final DateTime postDate;
+  // final DateTime postDate;
   final String postContent;
 
   @override
@@ -144,15 +160,15 @@ class PostCard extends StatelessWidget {
                               .textTheme
                               .titleMedium
                               ?.copyWith(fontWeight: FontWeight.bold)),
-                      Text(DateFormat("MMM d''yy").format(postDate),
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyLarge
-                              ?.copyWith(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onSurface
-                                      .withOpacity(0.5))),
+                      // Text(DateFormat("MMM d''yy").format(postDate),
+                      //     style: Theme.of(context)
+                      //         .textTheme
+                      //         .bodyLarge
+                      //         ?.copyWith(
+                      //             color: Theme.of(context)
+                      //                 .colorScheme
+                      //                 .onSurface
+                      //                 .withOpacity(0.5))),
                     ],
                   ),
                 ],
